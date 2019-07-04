@@ -33,17 +33,17 @@ private slots:
 private:
     std::vector<std::string> tokens; //For parsed urls
     Ui::MainWindow *ui;
-	enum UrlType {fullUrl, justId, wrongAddress};
-	void printNetError();
-	void printIdError();
-	MainWindow::UrlType checkUrl(std::string url);
+    enum UrlType {fullUrl, justId, wrongAddress};
+    void printNetError();
+    void printIdError();
+    MainWindow::UrlType checkUrl(std::string url);
     void replaceStringInPlace(std::string& subject, const std::string& search, const std::string& replace);
     static size_t writeFunction(void *ptr, size_t size, size_t nmemb, std::string* data);
     int curl_request(std::string* url, std::string* response);
     void parse_response(std::string* response, std::vector<std::string>* tokens);
     void print_tokens();
-	void decode(std::string* token);
-	void removeOrs(std::string* token);
+    void decode(std::string* token);
+    void removeOrs(std::string* token);
 };
 
 #endif // MAINWINDOW_H

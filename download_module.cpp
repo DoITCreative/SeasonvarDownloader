@@ -20,8 +20,8 @@ void Download_module::setProgress(uint m_progress)
 
 void Download_module::setLabel(const QString &label)
 {
-	QLabel *l = ui->label;
-	l->setText(label);
+    QLabel *l = ui->label;
+    l->setText(label);
 }
 
 int Download_module::getProgress()
@@ -43,7 +43,7 @@ void Download_module::on_pushButton_clicked()
     thread->start();
 }
 
-void Download_module::setToken(std::string token) 
+void Download_module::setToken(std::string token)
 {
     this->token=token;
 }

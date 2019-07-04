@@ -10,7 +10,7 @@ Download_screen::Download_screen(QWidget *parent) :
     ui->setupUi(this);
     vl = new QVBoxLayout();
     QScrollArea *sa = ui->scrollArea;
-	directoryInfo = ui->label;
+    directoryInfo = ui->label;
 
     //Container for download modules
     auto* container = new QWidget;
@@ -22,11 +22,11 @@ Download_screen::Download_screen(QWidget *parent) :
     //Spacer to move first item on top of the page
     qsi = new QSpacerItem(0,400,QSizePolicy::Minimum,QSizePolicy::Maximum);
 
-	if(directory!="")
-	{
-		//Sets directory for file download
-		directoryInfo->setText(directory);
-	}
+    if(directory!="")
+    {
+        //Sets directory for file download
+        directoryInfo->setText(directory);
+    }
 }
 
 Download_screen::~Download_screen()
@@ -36,20 +36,20 @@ Download_screen::~Download_screen()
 
 void Download_screen::setTokens(const std::vector<std::string> &tokens)
 {
-	this->tokens=tokens;
+    this->tokens=tokens;
 
     //Fills vector of modules
     if (!tokens.empty())
-	{
-		for (uint i=0; i<tokens.size(); i++)
-		{
+    {
+        for (uint i=0; i<tokens.size(); i++)
+        {
            auto *dm = new Download_module;
-		   dm->setProgress(0);
-		   dm->setLabel("Episode "+QString::number(i));
+           dm->setProgress(0);
+           dm->setLabel("Episode "+QString::number(i));
            dm->setToken(tokens.at(i));
-		   modules_list.push_back(dm);
-		}
-	}
+           modules_list.push_back(dm);
+        }
+    }
 
     //Adds modules from vector to layout
     if (!modules_list.empty())
@@ -69,16 +69,16 @@ void Download_screen::setCalledFrom(QWidget *calledFrom)
 
 void Download_screen::on_chooseDirectoryButton_clicked()
 {
-	QFileDialog *fd = new QFileDialog;
-	fd->setFileMode(QFileDialog::Directory);
-	fd->setOption(QFileDialog::ShowDirsOnly);
-	fd->setViewMode(QFileDialog::Detail);
-	int result = fd->exec();
-	if (result)
-	{
-		directory=fd->selectedFiles()[0];
-		directoryInfo->setText(directory);
-	}
+    QFileDialog *fd = new QFileDialog;
+    fd->setFileMode(QFileDialog::Directory);
+    fd->setOption(QFileDialog::ShowDirsOnly);
+    fd->setViewMode(QFileDialog::Detail);
+    int result = fd->exec();
+    if (result)
+    {
+        directory=fd->selectedFiles()[0];
+        directoryInfo->setText(directory);
+    }
 }
 
 void Download_screen::on_pushButton_clicked()

@@ -25,12 +25,12 @@ MainWindow::~MainWindow()
 /*
  *	Checks if url is valid
  */
-MainWindow::UrlType MainWindow::checkUrl(std::string url) 
+MainWindow::UrlType MainWindow::checkUrl(std::string url)
 {
-	std::string search = "/serial-";
-	if (url.find(search)==std::string::npos)
-	{
-		bool input_correct=true;
+    std::string search = "/serial-";
+    if (url.find(search)==std::string::npos)
+    {
+        bool input_correct=true;
         for(char i:url)
         {
             if(static_cast<int>(i-48) >= 10)
@@ -48,27 +48,27 @@ MainWindow::UrlType MainWindow::checkUrl(std::string url)
         }
         if ((!input_correct)||(url_int<=0))
         {
-			printIdError();
-			return MainWindow::UrlType::wrongAddress;	
+            printIdError();
+            return MainWindow::UrlType::wrongAddress;
         }
         return MainWindow::UrlType::justId;
-	} 
+    }
     return MainWindow::UrlType::fullUrl;
 }
 
 
-void MainWindow::printIdError() 
+void MainWindow::printIdError()
 {
-	QMessageBox messageBox;
+    QMessageBox messageBox;
     QMessageBox::critical(nullptr,"Error","Id is wrong!\nPlease specify correct one.");
-	messageBox.setFixedSize(500,200);
+    messageBox.setFixedSize(500,200);
 }
 
 void MainWindow::printNetError()
 {
- 	QMessageBox messageBox;
+    QMessageBox messageBox;
     QMessageBox::critical(nullptr,"Error","Network error ruins it!");
- 	messageBox.setFixedSize(500,200);
+    messageBox.setFixedSize(500,200);
 }
 
 /*
@@ -76,45 +76,45 @@ void MainWindow::printNetError()
  */
 void MainWindow::on_pushButton_clicked()
 {
-	std::string seasonvar_full_url=ui->lineEdit->text().toStdString();
+    std::string seasonvar_full_url=ui->lineEdit->text().toStdString();
     std::string film_id;
     std::string response;
     std::string url = "https://datalock.ru/playlist/145fb00f6ec315adbbe3db0ea331e94e/"; //Download template url
 
-	switch (checkUrl(seasonvar_full_url))
-	{
-		case MainWindow::UrlType::justId:
-			{
-				film_id=seasonvar_full_url;
-				break;
-			}
-		case MainWindow::UrlType::fullUrl:
-			{
-				seasonvar_full_url=seasonvar_full_url.substr(seasonvar_full_url.find("/serial-")+8);
-				seasonvar_full_url=seasonvar_full_url.substr(0,seasonvar_full_url.find("-"));
-				if (checkUrl(seasonvar_full_url)==MainWindow::UrlType::justId)
-				{
-					film_id=seasonvar_full_url;
-				} 
-				else
-				{
-					film_id="";
-				}
-				break;
-			}
-		case MainWindow::UrlType::wrongAddress:
-			{
-				film_id="";
-				break;
-			}
-	}
+    switch (checkUrl(seasonvar_full_url))
+    {
+        case MainWindow::UrlType::justId:
+            {
+                film_id=seasonvar_full_url;
+                break;
+            }
+        case MainWindow::UrlType::fullUrl:
+            {
+                seasonvar_full_url=seasonvar_full_url.substr(seasonvar_full_url.find("/serial-")+8);
+                seasonvar_full_url=seasonvar_full_url.substr(0,seasonvar_full_url.find("-"));
+                if (checkUrl(seasonvar_full_url)==MainWindow::UrlType::justId)
+                {
+                    film_id=seasonvar_full_url;
+                }
+                else
+                {
+                    film_id="";
+                }
+                break;
+            }
+        case MainWindow::UrlType::wrongAddress:
+            {
+                film_id="";
+                break;
+            }
+    }
 
     if (!film_id.empty())
-	{
+    {
             url=url+film_id+"/list.txt";
             if(curl_request(&url,&response)==1)
             {
-				printNetError();
+                printNetError();
             }
             if (response.empty())
             {
@@ -127,7 +127,7 @@ void MainWindow::on_pushButton_clicked()
             ui->textBrowser->setTextCursor(cursor);
             ui->pushButton_2->setEnabled(true);
             ui->pushButton_3->setEnabled(true);
-	}
+    }
 }
 
 /*
@@ -208,34 +208,34 @@ void MainWindow::parse_response(std::string* response, std::vector<std::string>*
     {
         replaceStringInPlace(m_token, "\\/", "/");
 
-		//Removes unnecessary lines from base64 encoded string
+        //Removes unnecessary lines from base64 encoded string
         replaceStringInPlace(m_token, "#2", "");
         replaceStringInPlace(m_token, "//Z3JpZA==", "");
 
-		//Decodes from base64
+        //Decodes from base64
         decode(&m_token);
 
-		//Remove or's
-		removeOrs(&m_token);
+        //Remove or's
+        removeOrs(&m_token);
     }
 }
 
 /*
- * Decodes from base64 
+ * Decodes from base64
  */
 void MainWindow::decode(std::string* token)
 {
-	BIO *b64, *bmem;
+    BIO *b64, *bmem;
     char *buffer = static_cast<char *>(malloc((*token).length()));
-	memset(buffer,0,(*token).length());
-	b64 = BIO_new(BIO_f_base64());
-	BIO_set_flags(b64,BIO_FLAGS_BASE64_NO_NL);
+    memset(buffer,0,(*token).length());
+    b64 = BIO_new(BIO_f_base64());
+    BIO_set_flags(b64,BIO_FLAGS_BASE64_NO_NL);
     bmem = BIO_new_mem_buf((*token).c_str(),static_cast<int>((*token).length()));
-	bmem = BIO_push(b64, bmem);
+    bmem = BIO_push(b64, bmem);
     BIO_read(bmem,buffer,static_cast<int>((*token).length()));
-	BIO_free_all(bmem);
-	std::string output(buffer);
-	*token = output;
+    BIO_free_all(bmem);
+    std::string output(buffer);
+    *token = output;
 }
 
 /*
@@ -243,13 +243,13 @@ void MainWindow::decode(std::string* token)
  */
 void MainWindow::removeOrs(std::string* token)
 {
-	std::string delimiter = " or ";
-	std::string teststr;
-	if (token->find(delimiter) != std::string::npos)
-	{
-		teststr = token->substr(token->find(delimiter)+delimiter.length(),token->length());
-		*token = teststr;
-	}
+    std::string delimiter = " or ";
+    std::string teststr;
+    if (token->find(delimiter) != std::string::npos)
+    {
+        teststr = token->substr(token->find(delimiter)+delimiter.length(),token->length());
+        *token = teststr;
+    }
 }
 
 /*
@@ -282,7 +282,7 @@ void MainWindow::on_pushButton_3_clicked()
 {
     auto *ds = new Download_screen();
     ds->setCalledFrom(this);
-	ds->setTokens(tokens);
+    ds->setTokens(tokens);
     ds->show();
     hide();
 }

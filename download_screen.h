@@ -27,17 +27,17 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-	void on_chooseDirectoryButton_clicked();
+    void on_chooseDirectoryButton_clicked();
 
 private:
     std::vector<Download_module*> modules_list;
-	QSpacerItem *qsi;
-	std::vector<std::string> tokens;
+    QSpacerItem *qsi;
+    std::vector<std::string> tokens;
     Ui::Download_screen *ui;
     QVBoxLayout *vl;
     QWidget *calledFrom = nullptr;
-	QLabel *directoryInfo;
-	QString directory;
+    QLabel *directoryInfo;
+    QString directory;
 };
 
 #endif // DOWNLOAD_SCREEN_H
