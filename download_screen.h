@@ -11,8 +11,9 @@
 #include <QVBoxLayout>
 #include "mainwindow.h"
 
-namespace Ui {
-class Download_screen;
+namespace Ui
+{
+    class Download_screen;
 }
 
 class Download_screen : public QWidget

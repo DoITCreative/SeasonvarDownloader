@@ -43,11 +43,11 @@ void Download_screen::setTokens(const std::vector<std::string> &tokens)
     {
         for (uint i=0; i<tokens.size(); i++)
         {
-           auto *dm = new Download_module;
-           dm->setProgress(0);
-           dm->setLabel("Episode "+QString::number(i));
-           dm->setToken(tokens.at(i));
-           modules_list.push_back(dm);
+            auto *dm = new Download_module;
+            dm->setProgress(0);
+            dm->setLabel("Episode "+QString::number(i));
+            dm->setToken(tokens.at(i));
+            modules_list.push_back(dm);
         }
     }
 

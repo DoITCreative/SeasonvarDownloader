@@ -8,8 +8,9 @@
 #include <string>
 #include "download_manager.h"
 
-namespace Ui {
-class Download_module;
+namespace Ui
+{
+    class Download_module;
 }
 
 class Download_module : public QWidget

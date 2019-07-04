@@ -11,8 +11,9 @@
 #include <vector>
 #include <download_screen.h>
 
-namespace Ui {
-class MainWindow;
+namespace Ui
+{
+    class MainWindow;
 }
 
 class MainWindow : public QWidget

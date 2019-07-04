@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 }
 
 /*
- *	Checks if url is valid
+ * Checks if url is valid
  */
 MainWindow::UrlType MainWindow::checkUrl(std::string url)
 {
@@ -84,49 +84,49 @@ void MainWindow::on_pushButton_clicked()
     switch (checkUrl(seasonvar_full_url))
     {
         case MainWindow::UrlType::justId:
+        {
+            film_id=seasonvar_full_url;
+            break;
+        }
+        case MainWindow::UrlType::fullUrl:
+        {
+            seasonvar_full_url=seasonvar_full_url.substr(seasonvar_full_url.find("/serial-")+8);
+            seasonvar_full_url=seasonvar_full_url.substr(0,seasonvar_full_url.find("-"));
+            if (checkUrl(seasonvar_full_url)==MainWindow::UrlType::justId)
             {
                 film_id=seasonvar_full_url;
-                break;
             }
-        case MainWindow::UrlType::fullUrl:
-            {
-                seasonvar_full_url=seasonvar_full_url.substr(seasonvar_full_url.find("/serial-")+8);
-                seasonvar_full_url=seasonvar_full_url.substr(0,seasonvar_full_url.find("-"));
-                if (checkUrl(seasonvar_full_url)==MainWindow::UrlType::justId)
-                {
-                    film_id=seasonvar_full_url;
-                }
-                else
-                {
-                    film_id="";
-                }
-                break;
-            }
-        case MainWindow::UrlType::wrongAddress:
+            else
             {
                 film_id="";
-                break;
             }
+            break;
+        }
+        case MainWindow::UrlType::wrongAddress:
+        {
+            film_id="";
+            break;
+        }
     }
 
     if (!film_id.empty())
     {
-            url=url+film_id+"/list.txt";
-            if(curl_request(&url,&response)==1)
-            {
-                printNetError();
-            }
-            if (response.empty())
-            {
-                printNetError();
-            }
-            parse_response(&response,&tokens);
-            print_tokens();
-            QTextCursor cursor = ui->textBrowser->textCursor();
-            cursor.setPosition(0);
-            ui->textBrowser->setTextCursor(cursor);
-            ui->pushButton_2->setEnabled(true);
-            ui->pushButton_3->setEnabled(true);
+        url=url+film_id+"/list.txt";
+        if(curl_request(&url,&response)==1)
+        {
+            printNetError();
+        }
+        if (response.empty())
+        {
+            printNetError();
+        }
+        parse_response(&response,&tokens);
+        print_tokens();
+        QTextCursor cursor = ui->textBrowser->textCursor();
+        cursor.setPosition(0);
+        ui->textBrowser->setTextCursor(cursor);
+        ui->pushButton_2->setEnabled(true);
+        ui->pushButton_3->setEnabled(true);
     }
 }
 
@@ -134,14 +134,14 @@ void MainWindow::on_pushButton_clicked()
  * Search and replace function
  */
 void MainWindow::replaceStringInPlace(std::string& subject,
-                                       const std::string& search,
-                                       const std::string& replace)
+                                      const std::string& search,
+                                      const std::string& replace)
 {
     size_t pos = 0;
     while ((pos = subject.find(search, pos)) != std::string::npos)
     {
-         subject.replace(pos, search.length(), replace);
-         pos += replace.length();
+        subject.replace(pos, search.length(), replace);
+        pos += replace.length();
     }
 }
 
@@ -199,7 +199,7 @@ void MainWindow::parse_response(std::string* response, std::vector<std::string>*
     while (response->find(delimiter) != std::string::npos)
     {
         token = response->substr(response->find(delimiter)+
-                delimiter.length(),response->length());
+            delimiter.length(),response->length());
         token_parsed = token.substr(0,token.find(delimiter2));
         tokens->push_back(token_parsed);
         *response=token.substr(token_parsed.length(),token.length());
