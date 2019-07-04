@@ -230,9 +230,9 @@ void MainWindow::decode(std::string* token)
 	memset(buffer,0,(*token).length());
 	b64 = BIO_new(BIO_f_base64());
 	BIO_set_flags(b64,BIO_FLAGS_BASE64_NO_NL);
-	bmem = BIO_new_mem_buf((*token).c_str(),(*token).length());
+    bmem = BIO_new_mem_buf((*token).c_str(),static_cast<int>((*token).length()));
 	bmem = BIO_push(b64, bmem);
-	BIO_read(bmem,buffer,(*token).length());
+    BIO_read(bmem,buffer,static_cast<int>((*token).length()));
 	BIO_free_all(bmem);
 	std::string output(buffer);
 	*token = output;

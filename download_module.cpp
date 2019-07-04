@@ -31,7 +31,7 @@ int Download_module::getProgress()
 
 void Download_module::on_pushButton_clicked()
 {
-    QString token_qstr = QString::fromUtf8(token.data(), token.size());
+    QString token_qstr = QString::fromUtf8(token.data(), static_cast<int>(token.size()));
     Download_manager *dm = new Download_manager(token_qstr);
 
     QThread* thread = new QThread;
