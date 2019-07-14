@@ -10,6 +10,7 @@
 #include <curl/curl.h>
 #include <vector>
 #include <download_screen.h>
+#include <script_screen.h>
 
 namespace Ui
 {
@@ -26,10 +27,9 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
 
 private:
     std::vector<std::string> tokens; //For parsed urls

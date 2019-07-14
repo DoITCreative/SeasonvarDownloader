@@ -28,18 +28,21 @@ SOURCES += \
     mainwindow.cpp \
     download_screen.cpp \
     download_module.cpp \
-    download_manager.cpp
+    download_manager.cpp \
+    script_screen.cpp
 
 HEADERS += \
     mainwindow.h \
     download_screen.h \
     download_module.h \
-    download_manager.h
+    download_manager.h \
+    script_screen.h
 
 FORMS += \
     mainwindow.ui \
     download_screen.ui \
-    download_module.ui
+    download_module.ui \
+    script_screen.ui
 
 unix|win32: LIBS += -lcurl -lssl -lcrypto
 

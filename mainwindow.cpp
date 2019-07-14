@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->textBrowser->setEnabled(false);
     ui->pushButton_2->setEnabled(false); //Copy links to clipboard
     ui->pushButton_3->setEnabled(false); //Download screen
+    ui->pushButton_4->setEnabled(false); //Generate download script
 }
 
 MainWindow::~MainWindow()
@@ -127,6 +128,7 @@ void MainWindow::on_pushButton_clicked()
         ui->textBrowser->setTextCursor(cursor);
         ui->pushButton_2->setEnabled(true);
         ui->pushButton_3->setEnabled(true);
+        ui->pushButton_4->setEnabled(true);
     }
 }
 
@@ -280,9 +282,18 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    auto *ds = new Download_screen();
-    ds->setCalledFrom(this);
-    ds->setTokens(tokens);
-    ds->show();
+    Download_screen *downloadScreen = new Download_screen();
+    downloadScreen->setCalledFrom(this);
+    downloadScreen->setTokens(tokens);
+    downloadScreen->show();
+    hide();
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    Script_screen *scriptScreen = new Script_screen();
+    scriptScreen->setCalledFrom(this);
+    scriptScreen->setTokens(tokens);
+    scriptScreen->show();
     hide();
 }
