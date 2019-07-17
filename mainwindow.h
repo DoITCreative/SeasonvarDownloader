@@ -3,6 +3,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QMovie>
 #include <QMessageBox>
 #include <QClipboard>
 #include <iostream>
@@ -45,6 +46,9 @@ private:
     void print_tokens();
     void decode(std::string* token);
     void removeOrs(std::string* token);
+    QMovie *loadingAnimation;
+    void startLoadingAnimation();
+    void stopLoadingAnimation();
 };
 
 #endif // MAINWINDOW_H

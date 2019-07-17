@@ -16,10 +16,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton_2->setEnabled(false); //Copy links to clipboard
     ui->pushButton_3->setEnabled(false); //Download screen
     ui->pushButton_4->setEnabled(false); //Generate download script
+    ui->loadingAnimation->setVisible(false); //Hide loading animation
+    loadingAnimation = new QMovie(":/loading-animation.gif"); //Initialize loading animation
+    ui->loadingAnimation->setMovie(loadingAnimation);
 }
 
 MainWindow::~MainWindow()
 {
+    delete loadingAnimation;
     delete ui;
 }
 
@@ -73,10 +77,29 @@ void MainWindow::printNetError()
 }
 
 /*
- *	Connect button pressed
+ * Shows loading animation
+ */
+void MainWindow::startLoadingAnimation()
+{
+    ui->loadingAnimation->setVisible(true);
+    loadingAnimation->start();
+}
+
+/*
+ * Hides loading animation
+ */
+void MainWindow::stopLoadingAnimation()
+{
+    ui->loadingAnimation->setVisible(false);
+    loadingAnimation->stop();
+}
+
+/*
+ * Connect button pressed
  */
 void MainWindow::on_pushButton_clicked()
 {
+    startLoadingAnimation();
     std::string seasonvar_full_url=ui->lineEdit->text().toStdString();
     std::string film_id;
     std::string response;
@@ -130,6 +153,7 @@ void MainWindow::on_pushButton_clicked()
         ui->pushButton_3->setEnabled(true);
         ui->pushButton_4->setEnabled(true);
     }
+    stopLoadingAnimation();
 }
 
 /*

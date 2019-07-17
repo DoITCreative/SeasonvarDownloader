@@ -3,4 +3,7 @@
         <file>icon.png</file>
         <file>yarr.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>loading-animation.gif</file>
+    </qresource>
 </RCC>
