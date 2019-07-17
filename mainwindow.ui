@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>640</width>
+    <width>675</width>
     <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>640</width>
+    <width>675</width>
     <height>480</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>640</width>
+    <width>675</width>
     <height>480</height>
    </size>
   </property>
@@ -39,6 +39,12 @@
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
+    <property name="spacing">
+     <number>8</number>
+    </property>
+    <property name="sizeConstraint">
+     <enum>QLayout::SetDefaultConstraint</enum>
+    </property>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
@@ -54,6 +60,12 @@
          <size>
           <width>400</width>
           <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
          </size>
         </property>
        </widget>
@@ -204,10 +216,22 @@
         <property name="enabled">
          <bool>true</bool>
         </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
           <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
          </size>
         </property>
         <property name="openExternalLinks">
@@ -225,8 +249,8 @@
   <widget class="QLabel" name="loadingAnimation">
    <property name="geometry">
     <rect>
-     <x>386</x>
-     <y>218</y>
+     <x>407</x>
+     <y>219</y>
      <width>60</width>
      <height>60</height>
     </rect>
@@ -253,8 +277,6 @@
     <bool>true</bool>
    </property>
   </widget>
-  <zorder>verticalLayoutWidget</zorder>
-  <zorder>loadingAnimation</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
