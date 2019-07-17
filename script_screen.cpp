@@ -9,6 +9,12 @@ Script_screen::Script_screen(QWidget *parent) :
     ui->otherLineEdit->setEnabled(false);
     ui->plainTextEdit->setPlainText(defaultScriptHeader+"\n");
     ui->saveScriptPushButton->setEnabled(false);
+    this->setGeometry( //Align window to the center of the screen
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    this->size(),
+                    qApp->desktop()->availableGeometry()));
 }
 
 void Script_screen::setCalledFrom(QWidget *calledFrom)

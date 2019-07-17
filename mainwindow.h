@@ -4,6 +4,8 @@
 
 #include <QWidget>
 #include <QMovie>
+#include <QStyle>
+#include <QDesktopWidget>
 #include <QMessageBox>
 #include <QClipboard>
 #include <iostream>

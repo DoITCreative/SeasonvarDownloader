@@ -8,6 +8,12 @@ Download_screen::Download_screen(QWidget *parent) :
     ui(new Ui::Download_screen)
 {
     ui->setupUi(this);
+    this->setGeometry( //Align window to the center of the screen
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    this->size(),
+                    qApp->desktop()->availableGeometry()));
     vl = new QVBoxLayout();
     QScrollArea *sa = ui->scrollArea;
     directoryInfo = ui->label;

@@ -19,6 +19,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->loadingAnimation->setVisible(false); //Hide loading animation
     loadingAnimation = new QMovie(":/loading-animation.gif"); //Initialize loading animation
     ui->loadingAnimation->setMovie(loadingAnimation);
+    this->setGeometry( //Align window to the center of the screen
+                QStyle::alignedRect(
+                    Qt::LeftToRight,
+                    Qt::AlignCenter,
+                    this->size(),
+                    qApp->desktop()->availableGeometry()));
 }
 
 MainWindow::~MainWindow()
