@@ -5,7 +5,6 @@
 #include <QtCore>
 #include <QtNetwork>
 #include <QNetworkReply>
-#include <iostream>
 
 class Download_manager: public QObject
 {

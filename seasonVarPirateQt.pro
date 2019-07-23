@@ -44,7 +44,5 @@ FORMS += \
     download_module.ui \
     script_screen.ui
 
-unix|win32: LIBS += -lssl -lcrypto
-
 RESOURCES += \
     resources.qrc

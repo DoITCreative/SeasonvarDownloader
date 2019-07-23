@@ -9,6 +9,7 @@
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QClipboard>
+#include <QByteArray>
 #include <string>
 #include <vector>
 #include <download_screen.h>

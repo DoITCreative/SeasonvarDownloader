@@ -1,10 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <openssl/sha.h>
-#include <openssl/hmac.h>
-#include <openssl/evp.h>
-#include <openssl/bio.h>
-#include <openssl/buffer.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
@@ -243,17 +238,11 @@ void MainWindow::parse_response(std::string* response, std::vector<std::string>*
  */
 void MainWindow::decode(std::string* token)
 {
-    BIO *b64, *bmem;
-    char *buffer = static_cast<char *>(malloc((*token).length()));
-    memset(buffer,0,(*token).length());
-    b64 = BIO_new(BIO_f_base64());
-    BIO_set_flags(b64,BIO_FLAGS_BASE64_NO_NL);
-    bmem = BIO_new_mem_buf((*token).c_str(),static_cast<int>((*token).length()));
-    bmem = BIO_push(b64, bmem);
-    BIO_read(bmem,buffer,static_cast<int>((*token).length()));
-    BIO_free_all(bmem);
-    std::string output(buffer);
-    *token = output;
+    std::string decodedToken = "";
+    QByteArray b = "";
+    b.append(QString::fromStdString(*token));
+    decodedToken = QByteArray::fromBase64(b).toStdString();
+    *token = decodedToken;
 }
 
 /*
