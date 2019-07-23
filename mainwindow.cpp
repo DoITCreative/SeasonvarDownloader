@@ -11,11 +11,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->label_3->setVisible(false); //Make parrot invisible
+    ui->labelCloud->setVisible(false); //Make parrot invisible
     ui->textBrowser->setEnabled(false);
-    ui->pushButton_2->setEnabled(false); //Copy links to clipboard
-    ui->pushButton_3->setEnabled(false); //Download screen
-    ui->pushButton_4->setEnabled(false); //Generate download script
+    ui->pushButtonCopyLinksToClipboard->setEnabled(false); //Copy links to clipboard
+    ui->pushButtonDownloadFromLinks->setEnabled(false); //Download screen
+    ui->pushButtonGenerateScript->setEnabled(false); //Generate download script
     ui->loadingAnimation->setVisible(false); //Hide loading animation
     loadingAnimation = new QMovie(":/loading-animation.gif"); //Initialize loading animation
     ui->loadingAnimation->setMovie(loadingAnimation);
@@ -103,10 +103,10 @@ void MainWindow::stopLoadingAnimation()
 /*
  * Connect button pressed
  */
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_pushButtonGetAllTheLinks_clicked()
 {
     startLoadingAnimation();
-    std::string seasonvar_full_url=ui->lineEdit->text().toStdString();
+    std::string seasonvar_full_url=ui->lineEditSeasonvarURL->text().toStdString();
     std::string film_id;
     std::string response;
     std::string url = "https://datalock.ru/playlist/145fb00f6ec315adbbe3db0ea331e94e/"; //Download template url
@@ -155,9 +155,9 @@ void MainWindow::on_pushButton_clicked()
         QTextCursor cursor = ui->textBrowser->textCursor();
         cursor.setPosition(0);
         ui->textBrowser->setTextCursor(cursor);
-        ui->pushButton_2->setEnabled(true);
-        ui->pushButton_3->setEnabled(true);
-        ui->pushButton_4->setEnabled(true);
+        ui->pushButtonDownloadFromLinks->setEnabled(true);
+        ui->pushButtonCopyLinksToClipboard->setEnabled(true);
+        ui->pushButtonGenerateScript->setEnabled(true);
     }
     stopLoadingAnimation();
 }
@@ -296,21 +296,21 @@ void MainWindow::print_tokens()
         str = str.fromStdString("<a href=\""+m_token+"\">"+m_token+"</a>"+"<br><br>");
         ui->textBrowser->append(str);
     }
-    ui->label_3->setVisible(true);
+    ui->labelCloud->setVisible(true);
     ui->textBrowser->setEnabled(true);
 }
 
 /*
  * Copy to clipboard
  */
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_pushButtonCopyLinksToClipboard_clicked()
 {
     QClipboard* clipboard = QApplication::clipboard();
     QTextBrowser* tb = ui->textBrowser;
     clipboard->setText(tb->toPlainText());
 }
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButtonDownloadFromLinks_clicked()
 {
     Download_screen *downloadScreen = new Download_screen();
     downloadScreen->setCalledFrom(this);
@@ -319,7 +319,7 @@ void MainWindow::on_pushButton_3_clicked()
     hide();
 }
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_pushButtonGenerateScript_clicked()
 {
     Script_screen *scriptScreen = new Script_screen();
     scriptScreen->setCalledFrom(this);

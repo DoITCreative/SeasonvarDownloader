@@ -29,10 +29,10 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_3_clicked();
-    void on_pushButton_4_clicked();
+    void on_pushButtonGetAllTheLinks_clicked();
+    void on_pushButtonCopyLinksToClipboard_clicked();
+    void on_pushButtonDownloadFromLinks_clicked();
+    void on_pushButtonGenerateScript_clicked();
 
 private:
     std::vector<std::string> tokens; //For parsed urls

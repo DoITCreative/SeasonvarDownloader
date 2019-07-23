@@ -23,14 +23,14 @@ public:
     ~Script_screen();
 
 private slots:
-    void on_backButton_clicked();
-    void on_saveLocationPushButton_clicked();
-    void on_saveLocationLineEdit_textChanged(const QString &arg1);
-    void on_otherLineEdit_textChanged(const QString &arg1);
-    void on_wgetRadioButton_clicked();
-    void on_aria2cRadioButton_clicked();
-    void on_otherRadioButton_clicked();
-    void on_saveScriptPushButton_clicked();
+    void on_pushButtonBack_clicked();
+    void on_pushButtonSaveLocation_clicked();
+    void on_lineEditSaveLocation_textChanged(const QString &arg1);
+    void on_lineEditOther_textChanged(const QString &arg1);
+    void on_radioButtonWget_clicked();
+    void on_radioButtonAria2c_clicked();
+    void on_radioButtonOther_clicked();
+    void on_pushButtonSaveScript_clicked();
 
 private:
     void fillScript();

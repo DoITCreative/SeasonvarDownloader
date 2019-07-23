@@ -29,7 +29,7 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/logo/icon.png</normaloff>:/icons/logo/icon.png</iconset>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="pushButtonGoBack">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -71,13 +71,13 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>619</width>
-      <height>419</height>
+      <width>617</width>
+      <height>417</height>
      </rect>
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="chooseDirectoryButton">
+  <widget class="QPushButton" name="pushButtonChooseDirectory">
    <property name="geometry">
     <rect>
      <x>460</x>
@@ -102,7 +102,7 @@
     <string>Set save directory</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="labelSetSaveDirectory">
    <property name="geometry">
     <rect>
      <x>190</x>

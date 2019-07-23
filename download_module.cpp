@@ -20,7 +20,7 @@ void Download_module::setProgress(uint m_progress)
 
 void Download_module::setLabel(const QString &label)
 {
-    QLabel *l = ui->label;
+    QLabel *l = ui->labelName;
     l->setText(label);
 }
 

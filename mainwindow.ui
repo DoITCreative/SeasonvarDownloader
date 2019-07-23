@@ -48,14 +48,14 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="labelSeasonvarURL">
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seasonvar URL or film id: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="lineEditSeasonvarURL">
         <property name="minimumSize">
          <size>
           <width>400</width>
@@ -80,7 +80,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="pushButtonGetAllTheLinks">
           <property name="minimumSize">
            <size>
             <width>170</width>
@@ -99,7 +99,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="pushButtonDownloadFromLinks">
           <property name="minimumSize">
            <size>
             <width>170</width>
@@ -118,7 +118,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_2">
+         <widget class="QPushButton" name="pushButtonCopyLinksToClipboard">
           <property name="minimumSize">
            <size>
             <width>170</width>
@@ -137,7 +137,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_4">
+         <widget class="QPushButton" name="pushButtonGenerateScript">
           <property name="minimumSize">
            <size>
             <width>170</width>
@@ -169,7 +169,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="labelCloud">
           <property name="maximumSize">
            <size>
             <width>90</width>
@@ -191,7 +191,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="labelParrot">
           <property name="maximumSize">
            <size>
             <width>170</width>

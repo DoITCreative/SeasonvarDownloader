@@ -16,7 +16,7 @@ Download_screen::Download_screen(QWidget *parent) :
                     qApp->desktop()->availableGeometry()));
     vl = new QVBoxLayout();
     QScrollArea *sa = ui->scrollArea;
-    directoryInfo = ui->label;
+    directoryInfo = ui->labelSetSaveDirectory;
 
     //Container for download modules
     auto* container = new QWidget;
@@ -73,7 +73,7 @@ void Download_screen::setCalledFrom(QWidget *calledFrom)
     this->calledFrom = calledFrom;
 }
 
-void Download_screen::on_chooseDirectoryButton_clicked()
+void Download_screen::on_pushButtonChooseDirectory_clicked()
 {
     QFileDialog *fd = new QFileDialog;
     fd->setFileMode(QFileDialog::Directory);
@@ -87,7 +87,7 @@ void Download_screen::on_chooseDirectoryButton_clicked()
     }
 }
 
-void Download_screen::on_pushButton_clicked()
+void Download_screen::on_pushButtonGoBack_clicked()
 {
     auto* mw = dynamic_cast<MainWindow*>(calledFrom);
     mw->show();

@@ -6,9 +6,9 @@ Script_screen::Script_screen(QWidget *parent) :
     ui(new Ui::Script_screen)
 {
     ui->setupUi(this);
-    ui->otherLineEdit->setEnabled(false);
-    ui->plainTextEdit->setPlainText(defaultScriptHeader+"\n");
-    ui->saveScriptPushButton->setEnabled(false);
+    ui->lineEditOther->setEnabled(false);
+    ui->plainTextEditScriptField->setPlainText(defaultScriptHeader+"\n");
+    ui->pushButtonSaveScript->setEnabled(false);
     this->setGeometry( //Align window to the center of the screen
                 QStyle::alignedRect(
                     Qt::LeftToRight,
@@ -24,10 +24,10 @@ void Script_screen::setCalledFrom(QWidget *calledFrom)
 
 void Script_screen::fillScript()
 {
-    ui->plainTextEdit->setPlainText(defaultScriptHeader+"\n");
+    ui->plainTextEditScriptField->setPlainText(defaultScriptHeader+"\n");
     for (auto &token:tokens)
     {
-        ui->plainTextEdit->setPlainText(ui->plainTextEdit->toPlainText()+selectedDownloadProgramName+" "+token.c_str()+"\n");
+        ui->plainTextEditScriptField->setPlainText(ui->plainTextEditScriptField->toPlainText()+selectedDownloadProgramName+" "+token.c_str()+"\n");
     }
 }
 
@@ -36,7 +36,7 @@ void Script_screen::setTokens(const std::vector<std::string> &tokens)
     this->tokens=tokens;
     for (auto &token:tokens)
     {
-        ui->plainTextEdit->setPlainText(ui->plainTextEdit->toPlainText()+selectedDownloadProgramName.toStdString().c_str()+" "+token.c_str()+"\n");
+        ui->plainTextEditScriptField->setPlainText(ui->plainTextEditScriptField->toPlainText()+selectedDownloadProgramName.toStdString().c_str()+" "+token.c_str()+"\n");
     }
 }
 
@@ -45,14 +45,14 @@ Script_screen::~Script_screen()
     delete ui;
 }
 
-void Script_screen::on_backButton_clicked()
+void Script_screen::on_pushButtonBack_clicked()
 {
     auto* mw = dynamic_cast<MainWindow*>(calledFrom);
     mw->show();
     hide();
 }
 
-void Script_screen::on_saveLocationPushButton_clicked()
+void Script_screen::on_pushButtonSaveLocation_clicked()
 {
     QFileDialog *fd = new QFileDialog;
     fd->setFileMode(QFileDialog::Directory);
@@ -63,56 +63,56 @@ void Script_screen::on_saveLocationPushButton_clicked()
     {
         directory=fd->selectedFiles()[0];
     }
-    ui->saveLocationLineEdit->setText(directory+"/"+defaultScriptName);
+    ui->lineEditSaveLocation->setText(directory+"/"+defaultScriptName);
 }
 
-void Script_screen::on_saveLocationLineEdit_textChanged(const QString &arg1)
+void Script_screen::on_lineEditSaveLocation_textChanged(const QString &arg1)
 {
     if (arg1.isEmpty())
     {
-        ui->saveScriptPushButton->setEnabled(false);
+        ui->pushButtonSaveScript->setEnabled(false);
     } else {
-        ui->saveScriptPushButton->setEnabled(true);
+        ui->pushButtonSaveScript->setEnabled(true);
     }
 }
 
-void Script_screen::on_otherLineEdit_textChanged(const QString &arg1)
+void Script_screen::on_lineEditOther_textChanged(const QString &arg1)
 {
     selectedDownloadProgramName = arg1;
     fillScript();
 }
 
-void Script_screen::on_wgetRadioButton_clicked()
+void Script_screen::on_radioButtonWget_clicked()
 {
-    ui->otherLineEdit->setEnabled(false);
+    ui->lineEditOther->setEnabled(false);
     selectedDownloadProgramName = "wget";
     fillScript();
 }
 
-void Script_screen::on_aria2cRadioButton_clicked()
+void Script_screen::on_radioButtonAria2c_clicked()
 {
-    ui->otherLineEdit->setEnabled(false);
+    ui->lineEditOther->setEnabled(false);
     selectedDownloadProgramName = "aria2c";
     fillScript();
 }
 
-void Script_screen::on_otherRadioButton_clicked()
+void Script_screen::on_radioButtonOther_clicked()
 {
-    ui->otherLineEdit->setEnabled(true);
-    selectedDownloadProgramName = ui->otherLineEdit->text();
+    ui->lineEditOther->setEnabled(true);
+    selectedDownloadProgramName = ui->lineEditOther->text();
     fillScript();
 }
 
-void Script_screen::on_saveScriptPushButton_clicked()
+void Script_screen::on_pushButtonSaveScript_clicked()
 {
-    QString filePath = ui->saveLocationLineEdit->text();
+    QString filePath = ui->lineEditSaveLocation->text();
     QFile file(filePath);
     if (file.open(QIODevice::WriteOnly))
     {
         QTextStream stream(&file);
-        stream<<ui->plainTextEdit->toPlainText();
+        stream<<ui->plainTextEditScriptField->toPlainText();
         file.setPermissions(QFile::ReadUser | QFile::WriteUser | QFile::ExeUser | QFile::ReadGroup | QFile::ReadOther);
         file.close();
     }
-    on_backButton_clicked();
+    on_pushButtonBack_clicked();
 }

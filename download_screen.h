@@ -27,8 +27,8 @@ public:
     ~Download_screen();
 
 private slots:
-    void on_pushButton_clicked();
-    void on_chooseDirectoryButton_clicked();
+    void on_pushButtonGoBack_clicked();
+    void on_pushButtonChooseDirectory_clicked();
 
 private:
     std::vector<Download_module*> modules_list;
