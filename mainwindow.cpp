@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete manager;
     delete loadingAnimation;
     delete ui;
 }
@@ -142,22 +143,7 @@ void MainWindow::on_pushButtonGetAllTheLinks_clicked()
     if (!film_id.empty())
     {
         url=url+film_id+"/list.txt";
-        if(curl_request(&url,&response)==1)
-        {
-            printNetError();
-        }
-        if (response.empty())
-        {
-            printNetError();
-        }
-        parse_response(&response,&tokens);
-        print_tokens();
-        QTextCursor cursor = ui->textBrowser->textCursor();
-        cursor.setPosition(0);
-        ui->textBrowser->setTextCursor(cursor);
-        ui->pushButtonDownloadFromLinks->setEnabled(true);
-        ui->pushButtonCopyLinksToClipboard->setEnabled(true);
-        ui->pushButtonGenerateScript->setEnabled(true);
+        network_request(&url,&response);
     }
     stopLoadingAnimation();
 }
@@ -187,34 +173,34 @@ size_t MainWindow::writeFunction(void *ptr, size_t size, size_t nmemb, std::stri
 }
 
 /*
- * Makes GET request with curllib on given url
+ * Sends GET request to seasonvar servers to get list of links
  */
-int MainWindow::curl_request(std::string* url, std::string* response)
+int MainWindow::network_request(std::string* url, std::string* response)
 {
-    CURL *curl = curl_easy_init();
-    if(curl)
-    {
-        CURLcode res;
-        curl_easy_setopt(curl,CURLOPT_URL,url->c_str()); //specify url
-        curl_easy_setopt(curl,CURLOPT_NOPROGRESS,1L); //disable progressbar
-        curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,writeFunction); //disable console output
-        curl_easy_setopt (curl, CURLOPT_VERBOSE, 0L); //0 disable messages
-        curl_easy_setopt(curl,CURLOPT_MAXREDIRS,3L); //Max redirects allowed
-        curl_easy_setopt(curl,CURLOPT_WRITEDATA,response); //Save response to variable
-        res = curl_easy_perform(curl); //Do request
-        if (res==CURLE_OK)
+    manager = new QNetworkAccessManager();
+    connect(manager,&QNetworkAccessManager::finished,
+        this, [&](QNetworkReply *reply)
         {
-            long response_code;
-            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-            if (response_code!=200)
+            if (reply->error()) 
             {
+                printNetError();
                 return 1;
             }
+            std::string answer = reply->readAll().toStdString();
+            response = &answer;
+            parse_response(response,&tokens);
+            print_tokens();
+            QTextCursor cursor = ui->textBrowser->textCursor();
+            cursor.setPosition(0);
+            ui->textBrowser->setTextCursor(cursor);
+            ui->pushButtonDownloadFromLinks->setEnabled(true);
+            ui->pushButtonCopyLinksToClipboard->setEnabled(true);
+            ui->pushButtonGenerateScript->setEnabled(true);
+            return 0;
         }
-        curl_easy_cleanup(curl); //Cleanup
-        curl=nullptr;
-        return 0;
-    }
+    );
+    request.setUrl(QUrl(QString::fromStdString(*url)));
+    manager->get(request);
     return 0;
 }
 

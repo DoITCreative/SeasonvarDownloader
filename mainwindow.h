@@ -2,15 +2,14 @@
 #define MAINWINDOW_H
 #pragma once
 
+#include <QUrl>
 #include <QWidget>
 #include <QMovie>
 #include <QStyle>
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QClipboard>
-#include <iostream>
 #include <string>
-#include <curl/curl.h>
 #include <vector>
 #include <download_screen.h>
 #include <script_screen.h>
@@ -43,7 +42,7 @@ private:
     MainWindow::UrlType checkUrl(std::string url);
     void replaceStringInPlace(std::string& subject, const std::string& search, const std::string& replace);
     static size_t writeFunction(void *ptr, size_t size, size_t nmemb, std::string* data);
-    int curl_request(std::string* url, std::string* response);
+    int network_request(std::string* url, std::string* response);
     void parse_response(std::string* response, std::vector<std::string>* tokens);
     void print_tokens();
     void decode(std::string* token);
@@ -51,6 +50,8 @@ private:
     QMovie *loadingAnimation;
     void startLoadingAnimation();
     void stopLoadingAnimation();
+    QNetworkAccessManager *manager;
+    QNetworkRequest request;
 };
 
 #endif // MAINWINDOW_H

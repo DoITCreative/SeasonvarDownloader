@@ -4,7 +4,6 @@
 #include <QProgressBar>
 #include <QLabel>
 
-
 Download_module::Download_module(QWidget *parent) :
     QWidget (parent), ui(new Ui::Download_module)
 {
