@@ -6,19 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>675</width>
+    <width>640</width>
     <height>480</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>675</width>
+    <width>640</width>
     <height>480</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>675</width>
+    <width>640</width>
     <height>480</height>
    </size>
   </property>
@@ -29,228 +29,11 @@
    <iconset resource="resources.qrc">
     <normaloff>:/icons/logo/icon.png</normaloff>:/icons/logo/icon.png</iconset>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>6</x>
-     <y>6</y>
-     <width>666</width>
-     <height>468</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3">
-    <property name="spacing">
-     <number>8</number>
-    </property>
-    <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
-    </property>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="labelSeasonvarURL">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seasonvar URL or film id: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEditSeasonvarURL">
-        <property name="minimumSize">
-         <size>
-          <width>400</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
-      </property>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QPushButton" name="pushButtonGetAllTheLinks">
-          <property name="minimumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Get all the links</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonDownloadFromLinks">
-          <property name="minimumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Download from links</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonCopyLinksToClipboard">
-          <property name="minimumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Copy links to clipboard</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonGenerateScript">
-          <property name="minimumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>170</width>
-            <height>30</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Generate script</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QLabel" name="labelCloud">
-          <property name="maximumSize">
-           <size>
-            <width>90</width>
-            <height>90</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="resources.qrc">:/icons/logo/yarr.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-          <property name="margin">
-           <number>0</number>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="labelParrot">
-          <property name="maximumSize">
-           <size>
-            <width>170</width>
-            <height>170</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap resource="resources.qrc">:/icons/logo/icon.png</pixmap>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <widget class="QTextBrowser" name="textBrowser">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="openExternalLinks">
-         <bool>true</bool>
-        </property>
-        <property name="openLinks">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
   <widget class="QLabel" name="loadingAnimation">
    <property name="geometry">
     <rect>
-     <x>407</x>
-     <y>219</y>
+     <x>386</x>
+     <y>226</y>
      <width>60</width>
      <height>60</height>
     </rect>
@@ -277,6 +60,284 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QLabel" name="labelSeasonvarURL">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>16</y>
+     <width>180</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seasonvar URL or film id: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditSeasonvarURL">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>10</y>
+     <width>441</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>400</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>50</y>
+     <width>441</width>
+     <height>421</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+   <property name="openLinks">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonGetAllTheLinks">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>170</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Get all the links</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonGenerateScript">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>155</y>
+     <width>170</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Generate script</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonDownloadFromLinks">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>170</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Download from links</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonCopyLinksToClipboard">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>85</y>
+     <width>170</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Copy links to clipboard</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelParrot">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>330</y>
+     <width>140</width>
+     <height>140</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>140</width>
+     <height>140</height>
+    </size>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/icons/logo/icon.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelCloud">
+   <property name="geometry">
+    <rect>
+     <x>16</x>
+     <y>271</y>
+     <width>80</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>80</width>
+     <height>80</height>
+    </size>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="resources.qrc">:/icons/logo/yarr.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonLinksDatabase">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>195</y>
+     <width>170</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>170</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Links database</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>182</y>
+     <width>171</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <zorder>textBrowser</zorder>
+  <zorder>labelSeasonvarURL</zorder>
+  <zorder>lineEditSeasonvarURL</zorder>
+  <zorder>pushButtonGetAllTheLinks</zorder>
+  <zorder>pushButtonGenerateScript</zorder>
+  <zorder>pushButtonDownloadFromLinks</zorder>
+  <zorder>pushButtonCopyLinksToClipboard</zorder>
+  <zorder>labelParrot</zorder>
+  <zorder>labelCloud</zorder>
+  <zorder>loadingAnimation</zorder>
+  <zorder>pushButtonLinksDatabase</zorder>
+  <zorder>line</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

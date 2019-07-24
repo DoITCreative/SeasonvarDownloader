@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->labelCloud->setVisible(false); //Make parrot invisible
     ui->textBrowser->setEnabled(false);
+    ui->pushButtonLinksDatabase->setEnabled(false); //Hide links button
     ui->pushButtonCopyLinksToClipboard->setEnabled(false); //Copy links to clipboard
     ui->pushButtonDownloadFromLinks->setEnabled(false); //Download screen
     ui->pushButtonGenerateScript->setEnabled(false); //Generate download script
