@@ -31,8 +31,11 @@ int Download_module::getProgress()
 void Download_module::on_pushButton_clicked()
 {
     QString token_qstr = QString::fromUtf8(token.data(), static_cast<int>(token.size()));
-    Download_manager *dm = new Download_manager(token_qstr);
+    //Download_manager *dm = new Download_manager(token_qstr);
+    std::cout<<"Add download to the queue ("<<token_qstr.toStdString()<<")"<<std::endl;
+    std::cout<<"If queue is not empty, do download"<<std::endl;
 
+    /*
     QThread* thread = new QThread;
     dm->moveToThread(thread);
     connect(thread, SIGNAL(started()), dm, SLOT(execute()));
@@ -40,6 +43,7 @@ void Download_module::on_pushButton_clicked()
     connect(dm, SIGNAL(finished()), dm, SLOT(deleteLater()));
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
     thread->start();
+    */
 }
 
 void Download_module::setToken(std::string token)

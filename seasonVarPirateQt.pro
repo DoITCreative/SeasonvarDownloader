@@ -29,14 +29,16 @@ SOURCES += \
     download_screen.cpp \
     download_module.cpp \
     download_manager.cpp \
-    script_screen.cpp
+    script_screen.cpp \
+    utils.cpp
 
 HEADERS += \
     mainwindow.h \
     download_screen.h \
     download_module.h \
     download_manager.h \
-    script_screen.h
+    script_screen.h \
+    utils.h
 
 FORMS += \
     mainwindow.ui \

@@ -5,11 +5,14 @@
 #include <QWidget>
 #include <QString>
 #include <QSpacerItem>
+#include <QScrollArea>
+#include <QFileDialog>
+#include <QVBoxLayout>
 #include <string>
 #include <vector>
-#include "download_module.h"
-#include <QVBoxLayout>
 #include "mainwindow.h"
+#include "download_module.h"
+#include "utils.h"
 
 namespace Ui
 {

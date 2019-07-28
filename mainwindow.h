@@ -10,6 +10,8 @@
 #include <QMessageBox>
 #include <QClipboard>
 #include <QByteArray>
+#include <QNetworkRequest>
+#include <QNetworkAccessManager>
 #include <string>
 #include <vector>
 #include <download_screen.h>

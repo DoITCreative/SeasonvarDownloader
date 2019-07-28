@@ -1,7 +1,5 @@
 #include "download_screen.h"
 #include "ui_download_screen.h"
-#include <QScrollArea>
-#include <QFileDialog>
 
 Download_screen::Download_screen(QWidget *parent) :
     QWidget(parent),
@@ -51,7 +49,7 @@ void Download_screen::setTokens(const std::vector<std::string> &tokens)
         {
             auto *dm = new Download_module;
             dm->setProgress(0);
-            dm->setLabel("Episode "+QString::number(i));
+            dm->setLabel(Utils::getFilmNameFromToken(QString::fromStdString(tokens.at(i))));
             dm->setToken(tokens.at(i));
             modules_list.push_back(dm);
         }
