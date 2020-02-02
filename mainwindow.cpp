@@ -1,5 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDebug>
+#include <iostream>
+
+bool MainWindow::use_proxy = false;
+QString MainWindow::proxy_host = "";
+quint16 MainWindow::proxy_port = 0;
+QString MainWindow::proxy_type = "";
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
@@ -79,6 +86,13 @@ void MainWindow::printNetError()
     messageBox.setFixedSize(500,200);
 }
 
+void MainWindow::printForbiddenError()
+{
+    QMessageBox messageBox;
+    QMessageBox::critical(nullptr,"Error","Link access is forbidden by provider. Use proxy settings to bypass.");
+    messageBox.setFixedSize(500,200);
+}
+
 /*
  * Shows loading animation
  */
@@ -139,7 +153,7 @@ void MainWindow::on_pushButtonGetAllTheLinks_clicked()
     if (!film_id.empty())
     {
         url=url+film_id+"/list.txt";
-        network_request(&url,&response);
+        network_request(&url,&response,film_id);
     }
     stopLoadingAnimation();
 }
@@ -171,11 +185,12 @@ size_t MainWindow::writeFunction(void *ptr, size_t size, size_t nmemb, std::stri
 /*
  * Sends GET request to seasonvar servers to get list of links
  */
-int MainWindow::network_request(std::string* url, std::string* response)
+int MainWindow::network_request(std::string* url, std::string* response, std::string film_id)
 {
+    int linkType = 0;
     manager = new QNetworkAccessManager();
     connect(manager,&QNetworkAccessManager::finished,
-        this, [&](QNetworkReply *reply)
+        this, [&, film_id](QNetworkReply *reply)
         {
             if (reply->error()) 
             {
@@ -183,8 +198,21 @@ int MainWindow::network_request(std::string* url, std::string* response)
                 return 1;
             }
             std::string answer = reply->readAll().toStdString();
+            if (answer == "[]")
+            {
+                linkType++;
+                //Different link here, use another list
+                std::string newUrl = "http://seasonvar.ru/playls2/a9f6bc3e39887f12e261c5105a6ae0c8/trans/";
+                newUrl = newUrl+film_id+"/plist.txt";
+                network_request(&newUrl, response, film_id);
+            }
+            if (answer == "")
+            {
+                printForbiddenError();
+                return 1;
+            }
             response = &answer;
-            parse_response(response,&tokens);
+            parse_response(response, linkType, &tokens);
             print_tokens();
             QTextCursor cursor = ui->textBrowser->textCursor();
             cursor.setPosition(0);
@@ -195,6 +223,16 @@ int MainWindow::network_request(std::string* url, std::string* response)
             return 0;
         }
     );
+    if (MainWindow::use_proxy)
+    {
+        QNetworkProxy proxy;
+        if (MainWindow::proxy_type == "socks5") proxy.setType(QNetworkProxy::Socks5Proxy);
+        else if (MainWindow::proxy_type == "http") proxy.setType(QNetworkProxy::HttpProxy);
+        else proxy.setType(QNetworkProxy::NoProxy);
+        proxy.setHostName(MainWindow::proxy_host);
+        proxy.setPort(MainWindow::proxy_port);
+        manager->setProxy(proxy);
+    }
     request.setUrl(QUrl(QString::fromStdString(*url)));
     manager->get(request);
     return 0;
@@ -203,8 +241,20 @@ int MainWindow::network_request(std::string* url, std::string* response)
 /*
  * Parses response to vector of urls
  */
-void MainWindow::parse_response(std::string* response, std::vector<std::string>* tokens)
+void MainWindow::parse_response(std::string* response, int code_id, std::vector<std::string>* tokens)
 {
+    std::string code;
+    switch (code_id) {
+    case 0:
+        code = "//Z3JpZA==";
+        break;
+    case 1:
+        code = "//b2xvbG8=";
+        break;
+    default:
+        code = "//Z3JpZA==";
+        break;
+    }
     tokens->clear();
     std::string delimiter = R"("file":")";
     std::string delimiter2 = "\"";
@@ -224,7 +274,7 @@ void MainWindow::parse_response(std::string* response, std::vector<std::string>*
 
         //Removes unnecessary lines from base64 encoded string
         replaceStringInPlace(m_token, "#2", "");
-        replaceStringInPlace(m_token, "//Z3JpZA==", "");
+        replaceStringInPlace(m_token, code, "");
 
         //Decodes from base64
         decode(&m_token);
@@ -302,4 +352,10 @@ void MainWindow::on_pushButtonGenerateScript_clicked()
     scriptScreen->setTokens(tokens);
     scriptScreen->show();
     hide();
+}
+
+void MainWindow::on_pushButtonConfigureProxy_clicked()
+{
+    ProxySettings *proxySettings = new ProxySettings();
+    proxySettings->show();
 }

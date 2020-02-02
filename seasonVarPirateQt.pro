@@ -29,6 +29,7 @@ SOURCES += \
     download_screen.cpp \
     download_module.cpp \
     download_manager.cpp \
+    proxysettings.cpp \
     script_screen.cpp \
     utils.cpp
 
@@ -37,6 +38,7 @@ HEADERS += \
     download_screen.h \
     download_module.h \
     download_manager.h \
+    proxysettings.h \
     script_screen.h \
     utils.h
 
@@ -44,6 +46,7 @@ FORMS += \
     mainwindow.ui \
     download_screen.ui \
     download_module.ui \
+    proxysettings.ui \
     script_screen.ui
 
 RESOURCES += \
