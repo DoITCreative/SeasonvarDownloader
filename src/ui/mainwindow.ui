@@ -26,8 +26,8 @@
    <string>SeasonVarPirateQt</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
-    <normaloff>:/icons/logo/icon.png</normaloff>:/icons/logo/icon.png</iconset>
+   <iconset resource="../resources.qrc">
+    <normaloff>:/icons/logo/gfx/icon.png</normaloff>:/icons/logo/gfx/icon.png</iconset>
   </property>
   <widget class="QLabel" name="loadingAnimation">
    <property name="geometry">
@@ -54,7 +54,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resources.qrc">:/loading-animation.gif</pixmap>
+    <pixmap resource="../resources.qrc">:/gfx/loading-animation.gif</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -63,14 +63,17 @@
   <widget class="QLabel" name="labelSeasonvarURL">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>16</y>
-     <width>180</width>
-     <height>19</height>
+     <x>20</x>
+     <y>10</y>
+     <width>151</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seasonvar URL or film id: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seasonvar URL: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditSeasonvarURL">
@@ -251,7 +254,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resources.qrc">:/icons/logo/icon.png</pixmap>
+    <pixmap resource="../resources.qrc">:/icons/logo/gfx/icon.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -279,7 +282,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="resources.qrc">:/icons/logo/yarr.png</pixmap>
+    <pixmap resource="../resources.qrc">:/icons/logo/gfx/yarr.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -367,7 +370,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

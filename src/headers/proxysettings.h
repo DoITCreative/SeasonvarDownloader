@@ -1,8 +1,10 @@
 #ifndef PROXYSETTINGS_H
 #define PROXYSETTINGS_H
+#pragma once
 
 #include <QWidget>
 #include "mainwindow.h"
+#include "proxysettings_controller.h"
 
 namespace Ui {
 class ProxySettings;

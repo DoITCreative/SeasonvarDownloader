@@ -1,4 +1,4 @@
-#include "download_manager.h"
+#include "../headers/download_manager.h"
 
 Download_manager::Download_manager(QString url_str)
 {

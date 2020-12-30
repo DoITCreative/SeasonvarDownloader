@@ -1,4 +1,4 @@
-#include "script_screen.h"
+#include "../headers/script_screen.h"
 #include "ui_script_screen.h"
 
 Script_screen::Script_screen(QWidget *parent) :
@@ -14,7 +14,12 @@ Script_screen::Script_screen(QWidget *parent) :
                     Qt::LeftToRight,
                     Qt::AlignCenter,
                     this->size(),
-                    qApp->desktop()->availableGeometry()));
+                    qApp->screens().first()->geometry()));
+}
+
+Script_screen::~Script_screen()
+{
+    delete ui;
 }
 
 void Script_screen::setCalledFrom(QWidget *calledFrom)
@@ -27,22 +32,17 @@ void Script_screen::fillScript()
     ui->plainTextEditScriptField->setPlainText(defaultScriptHeader+"\n");
     for (auto &token:tokens)
     {
-        ui->plainTextEditScriptField->setPlainText(ui->plainTextEditScriptField->toPlainText()+selectedDownloadProgramName+" "+token.c_str()+"\n");
+        ui->plainTextEditScriptField->setPlainText(ui->plainTextEditScriptField->toPlainText()+selectedDownloadProgramName+" "+token+"\n");
     }
 }
 
-void Script_screen::setTokens(const std::vector<std::string> &tokens)
+void Script_screen::setTokens(const QVector<QString> &tokens)
 {
     this->tokens=tokens;
     for (auto &token:tokens)
     {
-        ui->plainTextEditScriptField->setPlainText(ui->plainTextEditScriptField->toPlainText()+selectedDownloadProgramName.toStdString().c_str()+" "+token.c_str()+"\n");
+        ui->plainTextEditScriptField->setPlainText(ui->plainTextEditScriptField->toPlainText()+selectedDownloadProgramName.toStdString().c_str()+" "+token+"\n");
     }
-}
-
-Script_screen::~Script_screen()
-{
-    delete ui;
 }
 
 void Script_screen::on_pushButtonBack_clicked()

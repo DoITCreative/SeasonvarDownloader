@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT += core gui network
+CONFIG+=sdk_no_version_check c++17
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,30 +25,39 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    main.cpp \
-    mainwindow.cpp \
-    download_screen.cpp \
-    download_module.cpp \
-    download_manager.cpp \
-    proxysettings.cpp \
-    script_screen.cpp \
-    utils.cpp
+    src/cpp/controllers/proxysettings_controller.cpp \
+    src/cpp/main.cpp \
+    src/cpp/mainwindow.cpp \
+    src/cpp/download_screen.cpp \
+    src/cpp/download_module.cpp \
+    src/cpp/download_manager.cpp \
+    src/cpp/network_requester.cpp \
+    src/cpp/proxysettings.cpp \
+    src/cpp/script_screen.cpp \
+    src/cpp/utils.cpp \
+    src/cpp/controllers/mainwindow_controller.cpp
 
 HEADERS += \
-    mainwindow.h \
-    download_screen.h \
-    download_module.h \
-    download_manager.h \
-    proxysettings.h \
-    script_screen.h \
-    utils.h
+    src/headers/mainwindow.h \
+    src/headers/mainwindow_controller.h \
+    src/headers/download_screen.h \
+    src/headers/download_module.h \
+    src/headers/download_manager.h \
+    src/headers/mainwindow_interface.h \
+    src/headers/mainwindow_model.h \
+    src/headers/network_requester.h \
+    src/headers/proxysettings.h \
+    src/headers/proxysettings_controller.h \
+    src/headers/proxysettings_model.h \
+    src/headers/script_screen.h \
+    src/headers/utils.h
 
 FORMS += \
-    mainwindow.ui \
-    download_screen.ui \
-    download_module.ui \
-    proxysettings.ui \
-    script_screen.ui
+    src/ui/mainwindow.ui \
+    src/ui/download_screen.ui \
+    src/ui/download_module.ui \
+    src/ui/proxysettings.ui \
+    src/ui/script_screen.ui
 
 RESOURCES += \
-    resources.qrc
+    src/resources.qrc

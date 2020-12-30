@@ -1,4 +1,4 @@
-#include "download_screen.h"
+#include "../headers/download_screen.h"
 #include "ui_download_screen.h"
 
 Download_screen::Download_screen(QWidget *parent) :
@@ -11,7 +11,7 @@ Download_screen::Download_screen(QWidget *parent) :
                     Qt::LeftToRight,
                     Qt::AlignCenter,
                     this->size(),
-                    qApp->desktop()->availableGeometry()));
+                    qApp->screens().first()->geometry()));
     vl = new QVBoxLayout();
     QScrollArea *sa = ui->scrollArea;
     directoryInfo = ui->labelSetSaveDirectory;

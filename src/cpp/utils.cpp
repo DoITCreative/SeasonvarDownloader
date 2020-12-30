@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "../headers/utils.h"
 
 QString Utils::getFilmNameFromToken(QString token)
 {

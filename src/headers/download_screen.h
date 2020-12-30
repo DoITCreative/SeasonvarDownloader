@@ -3,6 +3,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QScreen>
 #include <QString>
 #include <QSpacerItem>
 #include <QScrollArea>

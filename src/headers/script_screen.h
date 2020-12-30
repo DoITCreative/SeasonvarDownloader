@@ -19,7 +19,7 @@ class Script_screen : public QWidget
 public:
     explicit Script_screen(QWidget *parent = nullptr);
     void setCalledFrom(QWidget *calledFrom);
-    void setTokens(const std::vector<std::string> &tokens);
+    void setTokens(const QVector<QString> &tokens);
     ~Script_screen();
 
 private slots:
@@ -36,7 +36,7 @@ private:
     void fillScript();
     Ui::Script_screen *ui;
     QWidget *calledFrom = nullptr;
-    std::vector<std::string> tokens;
+    QVector<QString> tokens;
     QString directory;
     const QString defaultScriptName = "downloadScript.sh";
     const QString defaultScriptHeader = "#!/usr/bin/env bash";

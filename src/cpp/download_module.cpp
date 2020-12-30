@@ -1,4 +1,4 @@
-#include "download_module.h"
+#include "../headers/download_module.h"
 #include "ui_download_module.h"
 #include <iostream>
 #include <QProgressBar>
