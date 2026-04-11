@@ -81,7 +81,7 @@ void Mainwindow_controller::network_request(QString* url, QString film_id, QStri
       }
     }
     //Send get request
-    QPair response = nr.getRequest(*url, psc.getProxyHost(), psc.getProxyPort(), psc.getProxyType());
+	QPair<QString, bool> response = nr.getRequest(*url, psc.getProxyHost(), psc.getProxyPort(), psc.getProxyType());
     QString answer = response.first;
 
     if (!response.second)
